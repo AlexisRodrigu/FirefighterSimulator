@@ -7,13 +7,12 @@ using System;
 
 public class TimerController : MonoBehaviour
 {
-
     [SerializeField]private TextMeshProUGUI timeCounterTxt;
-    [SerializeField]private char character = ':';
-
-
     [SerializeField] private bool timerStart; //time going
     private float timer;
+
+    public bool TimerStart { get => timerStart; set => timerStart = value; }
+
     private void Update()
     {
         if(timerStart)
@@ -26,7 +25,7 @@ public class TimerController : MonoBehaviour
     {
         float seconds = (timer % 59);
         float minutes = ((int)(timer/59)%59);
-        timeCounterTxt.text = minutes.ToString("00")+character+seconds.ToString("00");
+        timeCounterTxt.text = minutes.ToString("00")+ ":" +seconds.ToString("00");
     }
     
     public void StartTimer()
