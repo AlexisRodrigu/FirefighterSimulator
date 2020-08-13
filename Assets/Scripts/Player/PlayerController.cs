@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed = 3.0f;
+    [SerializeField] private float speedPlayer = 3.0f;
+    public float SpeedPlayer { get => speedPlayer; set => speedPlayer = value; }
     private float gravity = 10.0f;
     private CharacterController controller;
 
@@ -12,7 +13,6 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
     }
-
     void Update()
     {
         Movement();
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 direction = new Vector3(horizontal, 0, vertical);
-        Vector3 velocity = direction * speed;
+        Vector3 velocity = direction * speedPlayer;
         velocity = Camera.main.transform.TransformDirection(velocity);
         velocity.y -= gravity;
         controller.Move(velocity * Time.deltaTime);
