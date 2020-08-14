@@ -5,29 +5,31 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class GasFireExtinguisherActivate : MonoBehaviour
 {
-     ParticleSystem.Particle particle = new ParticleSystem.Particle();
-    float tiempoFinal = 2;
-    float tiempoInicial = 0;
+    private ParticleSystem ps;
+    private Collider collider;
 
-    ParticleSystem particulas;
- 
+    private void Awake()
+    {
+        ps = GetComponentInChildren<ParticleSystem>();
+        collider = GetComponent<Collider>();
+    }
     void Start()
     {
-        particulas = GetComponentInChildren<ParticleSystem>();
-       var emission = particulas.emission;
+        var emission = ps.emission;
         emission.enabled = false;
     }
 
     void Update()
-    {     
+    {
         Speed();
     }
 
     public void Speed() //Acelera
     {
-        var emission = particulas.emission;
+        var emission = ps.emission;
         if (CrossPlatformInputManager.GetButton("Fire1"))
-        {    
+        {
+            collider.enabled = true;
             emission.enabled = true;
             emission.type = ParticleSystemEmissionType.Time;
 
@@ -39,6 +41,7 @@ public class GasFireExtinguisherActivate : MonoBehaviour
         }
         else
         {
+            collider.enabled = false;
             emission.enabled = false;
             emission.type = ParticleSystemEmissionType.Time;
 

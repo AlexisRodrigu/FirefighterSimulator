@@ -7,15 +7,15 @@ using System;
 
 public class TimerController : MonoBehaviour
 {
-    [SerializeField]private TextMeshProUGUI timeCounterTxt;
+    [SerializeField] private TextMeshProUGUI timeCounterTxt;
     [SerializeField] private bool timerStart; //time going
-    private float timer;
-
     public bool TimerStart { get => timerStart; set => timerStart = value; }
+    private float timer;
+    public float Timer { get => timer; set => timer = value; }
 
     private void Update()
     {
-        if(timerStart)
+        if (timerStart)
         {
             timer += Time.deltaTime;
             UpdateText();
@@ -24,10 +24,9 @@ public class TimerController : MonoBehaviour
     private void UpdateText()
     {
         float seconds = (timer % 59);
-        float minutes = ((int)(timer/59)%59);
-        timeCounterTxt.text = minutes.ToString("00")+ ":" +seconds.ToString("00");
+        float minutes = ((int)(timer / 59) % 59);
+        timeCounterTxt.text = minutes.ToString("00") + ":" + seconds.ToString("00");
     }
-    
     public void StartTimer()
     {
         StartTimer(0);
@@ -36,6 +35,5 @@ public class TimerController : MonoBehaviour
     {
         timerStart = true;
         timer = seconds;
-        UpdateText();
     }
-}
+  }

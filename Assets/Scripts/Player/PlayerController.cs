@@ -29,14 +29,6 @@ public class PlayerController : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
-    public void PointerEnter()
-    {
-        Debug.Log("<color=red><b>" + "Entras" + "</b></color>");
-    }
-    public void PointerExit()
-    {
-        Debug.Log("<color=yellow><b>" + "Sales" + "</b></color>");
-    }
     public void PointerClick()
     {
         GameManager.Instance.StarGame(true);
